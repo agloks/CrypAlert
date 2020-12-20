@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{60DB11CF-4979-4579-9D94-04BAB542DD5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessAlert", "ProcessAlert\ProcessAlert.csproj", "{369F1876-0F2F-4BCF-864B-15C33707A736}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{60DB11CF-4979-4579-9D94-04BAB542DD5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60DB11CF-4979-4579-9D94-04BAB542DD5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60DB11CF-4979-4579-9D94-04BAB542DD5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{369F1876-0F2F-4BCF-864B-15C33707A736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{369F1876-0F2F-4BCF-864B-15C33707A736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{369F1876-0F2F-4BCF-864B-15C33707A736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{369F1876-0F2F-4BCF-864B-15C33707A736}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
