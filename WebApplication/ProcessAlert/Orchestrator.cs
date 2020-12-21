@@ -22,6 +22,11 @@ namespace ProcessAlert
         {
             this._worker = new Worker(this,  symbol, aboveValue, downValue, id);
         }
+
+        public void RunActualWorker(string id)
+        {
+            this._worker.CallProcess();
+        }
         
         public void InsertWorkerToPool(string id)
         {
@@ -32,6 +37,17 @@ namespace ProcessAlert
         public int ManyWorkerActive()
         {
             return _workers.Count;
+        }
+
+        public void CleanWorkerPool()
+        {
+            for (int count = 0; count < _workers.Count; count++)
+            {
+                if (_workers[count].Done == true)
+                {
+                    _workers.RemoveAt(count);
+                }
+            }
         }
     }
     
@@ -62,7 +78,7 @@ namespace ProcessAlert
 
             using (Process process = new Process())
             {
-                process.StartInfo.FileName = "/home/agl/Codes/csharp/test/Task/test_codigo.o";
+                process.StartInfo.FileName = "/home/agl/Gits/CrypAlert/WebApplication/ProcessAlert/app";
                 process.StartInfo.Arguments =
                     $"app --symbol {this._symbol} --above-value {this._aboveValue} --down-value {this._downValue} --k-acess {this._context.KAcess}";
                 process.StartInfo.UseShellExecute = false;
