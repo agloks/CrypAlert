@@ -23,9 +23,9 @@ namespace ProcessAlert
             this._worker = new Worker(this,  symbol, aboveValue, downValue, id);
         }
 
-        public void RunActualWorker(string id)
+        public void RunActualWorker(Letter letter)
         {
-            this._worker.CallProcess();
+            this._worker.CallProcess(letter);
         }
         
         public void InsertWorkerToPool(string id)
@@ -70,8 +70,24 @@ namespace ProcessAlert
             this._aboveValue = aboveValue;
             this._downValue = downValue;
         }
+
+        private void SendAlert(Letter letter)
+        {
+            switch (letter.Type)
+            {
+                case MessageType.Sms:
+                    Publish.SendSMS(letter);
+                    break;
+                case MessageType.Email:
+                    Publish.SendEmail(letter);
+                    break;
+                default:
+                    Console.WriteLine("Doesn't was possible send alert");
+                    break;
+            }
+        }
         
-        public async Task<string> CallProcess()
+        public string CallProcess(Letter letter)
         {
             this._context.IsRunning = true;
             string output = "";
@@ -87,12 +103,15 @@ namespace ProcessAlert
                 
                 // Synchronously read the standard output of the spawned process. 
                 StreamReader reader = process.StandardOutput;
-                output = await reader.ReadToEndAsync();
+                output = reader.ReadToEnd();
                 process.WaitForExit();
 
                 output = output.ToString();
             }
-        
+
+            letter.Message = output;
+            this.SendAlert(letter);
+            
             this._context.IsRunning = false;
             this.Done = true;
             return output;
